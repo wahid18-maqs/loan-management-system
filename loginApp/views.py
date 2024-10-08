@@ -51,9 +51,9 @@ def login_view(request):
     form = CustomerLoginForm()
     if request.method == 'POST':
         form = CustomerLoginForm(data=request.POST)
-        # username = request.POST['username']
-        # password = request.POST['password']
-        # print(username, password)
+        username = request.POST['username']
+        password = request.POST['password']
+        print(username, password)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
@@ -86,5 +86,5 @@ def edit_customer(request):
             customer = form.save(commit=False)
             customer.save()
             return HttpResponseRedirect(reverse('home'))
-    # return HttpResponseRedirect(reverse('home'))
+    return HttpResponseRedirect(reverse('home'))
     return render(request, 'loginApp/edit.html', context={'form': form})
